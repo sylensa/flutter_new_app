@@ -22,21 +22,27 @@ class HomeController extends GetxController{
   }
 
   deleteCountry(){
+    for(int i =0; i <selectedCountries.value.length; i++){
       for(int t = 0; t < listCountries.value.length; t++){
-          if(listCountries.value[t].selected!){
-            print("remove selectedd");
-            listCountries.value.removeAt(t);
-          }
+        if(listCountries.value[t].name == selectedCountries.value[i].name){
+          listCountries.value.removeAt(t);
+          listCountries.refresh();
+          selectedCountries.refresh();
+        }
       }
-      update();
+    }
+
+
   }
   selectedCountry(CountyModel countyModel){
       for(int t = 0; t < listCountries.value.length; t++){
           if(listCountries.value[t].name == countyModel.name){
-            listCountries.value[t].selected = true;
+            listCountries.value[t] = countyModel;
+            selectedCountries.value.add(countyModel);
           }
       }
-      update();
+      listCountries.refresh();
+      selectedCountries.refresh();
   }
 }
 

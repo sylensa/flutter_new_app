@@ -29,7 +29,9 @@ class HomeViewWidget extends StatelessWidget {
           width: 50,
           child: Checkbox(value: countyModel.selected, onChanged: (v){
             print("v:$v");
+            countyModel.selected = v;
             state.selectedCountry(countyModel);
+
 
           },
 
